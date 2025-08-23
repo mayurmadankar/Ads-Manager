@@ -1,30 +1,37 @@
 export const registerFormControls = [
   {
     name: "firstName",
-    label: "First Name",
+    label: "First name",
     placeholder: "Enter your first name",
     componentType: "input",
     type: "text"
   },
   {
     name: "lastName",
-    label: "Last Name",
+    label: "Last name",
     placeholder: "Enter your last name",
     componentType: "input",
     type: "text"
   },
   {
-    name: "identifier",
-    label: "Business email or Phone number",
-    placeholder: "Enter your business email or phone number",
+    name: "email",
+    label: "Business email",
+    placeholder: "Enter your business email",
     componentType: "input",
-    type: "text"
+    type: "email"
   },
   {
-    name: "otp",
-    label: "Enter your OTP",
-    placeholder: "Enter the OTP sent to your email or phone",
+    name: "phone",
+    label: "Business Phone Number",
+    placeholder: "Enter your business phone number",
     componentType: "input",
-    type: "text"
+    type: "tel"
+  },
+  {
+    name: "password",
+    label: "Password",
+    placeholder: "Enter your password",
+    componentType: "input",
+    type: "password"
   }
 ];

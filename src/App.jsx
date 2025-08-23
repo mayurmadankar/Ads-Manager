@@ -1,17 +1,20 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import AuthRegister from "./pages/AuthRegister";
 import AuthLogin from "./pages/AuthLogin";
+import CheckAuth from "./components/common/CheckAuth";
+import AuthLayout from "./components/auth/AuthLayout";
 
 function App() {
+  const isAuthenticated = false;
   const router = createBrowserRouter([
     {
       path: "/",
-      element: <CheckAuth />
+      element: <CheckAuth isAuthenticated={isAuthenticated} />
     },
     {
       path: "/auth",
       element: (
-        <CheckAuth isAuthenticated={isAuthenticated} user={user}>
+        <CheckAuth isAuthenticated={isAuthenticated}>
           <AuthLayout />
         </CheckAuth>
       ),
