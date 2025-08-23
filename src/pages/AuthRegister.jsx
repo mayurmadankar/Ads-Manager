@@ -19,8 +19,8 @@ const AuthRegister = () => {
   }
 
   return (
-    <div className="flex items-center justify-center p-8">
-      <div className="w-full ">
+    <div className="flex items-center justify-center w-full p-8">
+      <div className="w-full">
         <h1 className="text-2xl font-bold mb-4">Sign Up</h1>
         <CommonForm
           formControls={registerFormControls}
