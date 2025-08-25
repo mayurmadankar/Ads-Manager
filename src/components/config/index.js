@@ -25,7 +25,9 @@ export const registerFormControls = [
     label: "Business Phone Number",
     placeholder: "Enter your business phone number",
     componentType: "input",
-    type: "tel"
+    type: "tel",
+    inputMode: "numeric",
+    pattern: "[0-9]*"
   },
   {
     name: "password",
