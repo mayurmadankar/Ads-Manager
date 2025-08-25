@@ -19,9 +19,9 @@ const AuthRegister = () => {
   }
 
   return (
-    <div className="flex items-center justify-center w-full p-8">
+    <div className="flex items-center justify-center w-full p-6 bg-white border rounded-lg">
       <div className="w-full">
-        <h1 className="text-2xl font-bold mb-4">Sign Up</h1>
+        <h1 className="text-[30px] font-bold mb-4">Sign Up</h1>
         <CommonForm
           formControls={registerFormControls}
           buttonText="Sign Up"
@@ -29,6 +29,20 @@ const AuthRegister = () => {
           setFormData={setFormData}
           onSubmit={onSubmit}
         />
+        <div className="flex items-center justify-center py-2 gap-2">
+          <input type="checkbox" id="terms" className="accent-blue-600" />
+          <label htmlFor="terms" className="text-sm">
+            I agree to&nbsp;
+            <a href="#" className="text-blue-500 underline hover:text-blue-700">
+              Terms of Use
+            </a>
+            &nbsp;and&nbsp;
+            <a href="#" className="text-blue-500 underline hover:text-blue-700">
+              Privacy Policy
+            </a>
+            &nbsp;of Bharat TeleClinic
+          </label>
+        </div>
       </div>
     </div>
   );

@@ -58,7 +58,7 @@ const CommonForm = ({
       <div className="flex flex-col gap-3">
         {formControls.map((controlItem) => (
           <div className="grid w-full gap-1.5" key={controlItem.name}>
-            <Label className="mb-1 text-lg text-neutral-600">
+            <Label className="mb-1 text-xl text-neutral-600">
               {controlItem.label}
             </Label>
             {renderInputsByComponentType(controlItem)}
@@ -68,7 +68,7 @@ const CommonForm = ({
       <Button
         disabled={isBtnDisabled}
         type="submit"
-        className="w-full mt-4"
+        className="w-full mt-4 text-lg py-6"
         variant="custom"
       >
         {buttonText || "Submit"}

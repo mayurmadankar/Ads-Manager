@@ -5,12 +5,12 @@ import { Button } from "../ui/button";
 const AuthLayout = () => {
   return (
     <div className="min-h-screen flex flex-col ">
-      <header className="flex items-center justify-between px-20 py-5 bg-white shadow-sm">
+      <header className="flex items-center justify-between px-12 py-5 bg-white shadow-sm max-md:py-3 max-md:px-4">
         <div className="flex items-center gap-3">
           <img
-            src="/src/assets/btimage.jpg"
+            src="/src/assets/btimage.png"
             alt="Brand logo"
-            className="h-10 w-auto"
+            className="h-14 w-auto max-md:h-10"
           />
         </div>
         <div className="flex items-center gap-6">
@@ -20,22 +20,17 @@ const AuthLayout = () => {
           >
             FAQs
           </a>
-          <Button variant="custom" className="w-[120px]">
+          <Button variant="custom" className="md:w-[120px] text-lg py-6">
             Log In
           </Button>
         </div>
       </header>
-      <main className="flex flex-1 items-center justify-center px-4">
+      <main className="flex flex-1 items-center justify-center px-12 my-4 max-md:p-4">
         <div className="flex flex-col md:flex-row bg-white rounded-xl shadow-lg overflow-hidden w-full">
           <div className="hidden md:flex flex-col justify-center items-center bg-blue-100 px-10 py-12 w-1/2">
-            <h2 className="text-3xl font-bold text-blue-700 mb-2">
-              Welcome Back!
-            </h2>
-            <p className="text-blue-600 text-lg">
-              Please login to your account.
-            </p>
+            <img src="/src/assets/girl.png" alt="default-girl" />
           </div>
-          <div className="flex-1 flex items-center justify-center px-8 py-8">
+          <div className="flex-1 flex items-center justify-center md:px-8 md:py-8 md:bg-blue-100">
             <Outlet />
           </div>
         </div>
