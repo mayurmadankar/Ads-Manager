@@ -19,8 +19,8 @@ const AuthRegister = () => {
   }
 
   return (
-    <div className="flex items-center justify-center w-full p-6 bg-white border rounded-lg">
-      <div className="w-full">
+    <div className="flex items-center justify-center  w-[500px] p-6 bg-white border rounded-lg ">
+      <div className="flex flex-col items-center justify-center w-full gap-4">
         <h1 className="text-[30px] font-bold mb-4">Sign Up</h1>
         <CommonForm
           formControls={registerFormControls}
@@ -29,7 +29,7 @@ const AuthRegister = () => {
           setFormData={setFormData}
           onSubmit={onSubmit}
         />
-        <div className="flex items-center justify-center py-2 gap-2">
+        <div className="flex items-center justify-center py-2 gap-2 max-sm:w-[300px]">
           <input type="checkbox" id="terms" className="accent-blue-600" />
           <label htmlFor="terms" className="text-sm">
             I agree to&nbsp;

@@ -96,6 +96,7 @@ const CommonForm = (props) => {
                   name="password"
                   placeholder="Enter password"
                   value={formData.password}
+                  maxLength={20}
                   onChange={(event) =>
                     handleInputChange(
                       event,
@@ -142,21 +143,21 @@ const CommonForm = (props) => {
                   (getControlItem.name === "lastName" && lastNameError) ||
                   (getControlItem.name === "email" && emailError) ||
                   (getControlItem.name === "phone" && phoneError)
-                    ? "border-red-500 pr-10"
+                    ? "border-red-500 pr-10 text-sm"
                     : "pr-10"
                 }
               />
               {getControlItem.name === "firstName" && firstNameError && (
-                <p className="text-red-500">{firstNameError}</p>
+                <p className="text-red-500 text-sm">{firstNameError}</p>
               )}
               {getControlItem.name === "lastName" && lastNameError && (
-                <p className="text-red-500">{lastNameError}</p>
+                <p className="text-red-500 text-sm">{lastNameError}</p>
               )}
               {getControlItem.name === "email" && emailError && (
-                <p className="text-red-500">{emailError}</p>
+                <p className="text-red-500 text-sm">{emailError}</p>
               )}
               {getControlItem.name === "phone" && phoneError && (
-                <p className="text-red-500">{phoneError}</p>
+                <p className="text-red-500 text-sm">{phoneError}</p>
               )}
             </>
           );
@@ -187,9 +188,7 @@ const CommonForm = (props) => {
       <div className="flex flex-col gap-3">
         {formControls.map((controlItem) => (
           <div className="grid w-full gap-1.5" key={controlItem.name}>
-            <Label className="mb-1 text-xl text-neutral-600">
-              {controlItem.label}
-            </Label>
+            <Label className="mb-1 text-neutral-600">{controlItem.label}</Label>
             {renderInputsByComponentType(controlItem)}
           </div>
         ))}
@@ -197,7 +196,7 @@ const CommonForm = (props) => {
       <Button
         disabled={isBtnDisabled}
         type="submit"
-        className="w-full mt-4 text-lg py-6"
+        className="w-full mt-4 text-lg py-6 max-md:py-3"
         variant="custom"
       >
         {buttonText || "Submit"}
