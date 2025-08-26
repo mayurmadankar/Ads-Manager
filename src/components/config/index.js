@@ -22,8 +22,8 @@ export const registerFormControls = [
   },
   {
     name: "phone",
-    label: "Business Phone Number",
-    placeholder: "Enter your business phone number",
+    label: "Business mobile Number",
+    placeholder: "Enter your business mobile number",
     componentType: "input",
     type: "tel",
     inputMode: "numeric",
@@ -40,11 +40,11 @@ export const registerFormControls = [
 
 export const loginFormControls = [
   {
-    name: "email",
-    label: "Email",
-    placeholder: "Enter your email",
+    name: "identifier",
+    label: "Email or mobile number",
+    placeholder: "Enter your business email or mobile number",
     componentType: "input",
-    type: "email"
+    type: "text"
   },
   {
     name: "password",

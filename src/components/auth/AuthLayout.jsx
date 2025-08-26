@@ -10,7 +10,7 @@ const AuthLayout = () => {
 
   return (
     <div className="min-h-screen flex flex-col ">
-      <header className="flex items-center justify-between px-12 py-5 bg-white shadow-sm max-md:py-3 max-md:px-4">
+      <header className="flex items-center justify-between px-12 py-2 bg-white shadow-sm max-md:py-3 max-md:px-4">
         <div className="flex items-center gap-3">
           <img
             src={btimage}
@@ -29,18 +29,23 @@ const AuthLayout = () => {
             variant="custom"
             className="md:w-[120px] text-lg py-6 max-md:py-3"
             onClick={() => {
-              setTbn(!tbn);
-              {
-                tbn ? navigate("/auth/login") : navigate("/auth/register");
-              }
+              setTbn((prev) => {
+                const newState = !prev;
+                if (newState) {
+                  navigate("/auth/login");
+                } else {
+                  navigate("/auth/register");
+                }
+                return newState;
+              });
             }}
           >
             {tbn ? "Sign Up" : "Log In"}
           </Button>
         </div>
       </header>
-      <main className="flex md:flex-1 items-center justify-center px-12 my-4 max-md:p-4">
-        <div className="flex flex-col md:flex-row bg-white rounded-xl md:shadow-lg overflow-hidden w-full">
+      <main className="flex md:flex-1 items-center justify-center px-12 my-4 max-md:p-4 ">
+        <div className="flex flex-col md:flex-row bg-white rounded-xl md:shadow-lg overflow-hidden w-full max-md:shadow-2xl">
           <div className="hidden lg:flex flex-col justify-center items-center bg-blue-100 px-10 py-12 w-1/2">
             <img src={girlImg} alt="default-girl" />
           </div>

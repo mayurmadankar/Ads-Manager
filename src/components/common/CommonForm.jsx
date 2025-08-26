@@ -12,7 +12,7 @@ const CommonForm = (props) => {
     setFormData,
     onSubmit,
     buttonText,
-    isBtnDisabled
+    isSubmitting
   } = props;
 
   const [showPassword, setShowPassword] = useState(false);
@@ -22,6 +22,7 @@ const CommonForm = (props) => {
   const [lastNameError, setLastNameError] = useState("");
   const [phoneError, setPhoneError] = useState("");
   const [passwordError, setPasswordError] = useState("");
+  const [identifierError, setIdentifierError] = useState("");
 
   const handleInputChange = (event, name, type) => {
     let value = event.target.value;
@@ -73,6 +74,23 @@ const CommonForm = (props) => {
         );
       } else {
         setPasswordError("");
+      }
+    }
+
+    if (name === "identifier") {
+      if (!value) {
+        setIdentifierError("Please enter your email or mobile number");
+      } else {
+        const emailRegex = /^\S+@\S+\.\S+$/;
+        const phoneRegex = /^[0-9]{10}$/;
+
+        if (emailRegex.test(value)) {
+          setIdentifierError("");
+        } else if (phoneRegex.test(value)) {
+          setIdentifierError("");
+        } else {
+          setIdentifierError("Enter a valid email or 10-digit mobile number");
+        }
       }
     }
 
@@ -142,7 +160,8 @@ const CommonForm = (props) => {
                   (getControlItem.name === "firstName" && firstNameError) ||
                   (getControlItem.name === "lastName" && lastNameError) ||
                   (getControlItem.name === "email" && emailError) ||
-                  (getControlItem.name === "phone" && phoneError)
+                  (getControlItem.name === "phone" && phoneError) ||
+                  (getControlItem.name === "identifier" && identifierError)
                     ? "border-red-500 pr-10 text-sm"
                     : "pr-10"
                 }
@@ -158,6 +177,9 @@ const CommonForm = (props) => {
               )}
               {getControlItem.name === "phone" && phoneError && (
                 <p className="text-red-500 text-sm">{phoneError}</p>
+              )}
+              {getControlItem.name === "identifier" && identifierError && (
+                <p className="text-red-500 text-sm">{identifierError}</p>
               )}
             </>
           );
@@ -194,12 +216,12 @@ const CommonForm = (props) => {
         ))}
       </div>
       <Button
-        disabled={isBtnDisabled}
+        disabled={isSubmitting}
         type="submit"
         className="w-full mt-4 text-lg py-6 max-md:py-3"
         variant="custom"
       >
-        {buttonText || "Submit"}
+        {isSubmitting ? "Submitting..." : buttonText}
       </Button>
     </form>
   );
