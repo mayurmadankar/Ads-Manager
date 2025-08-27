@@ -6,7 +6,7 @@ import btimage from "../../assets/btimage.png";
 
 const AuthLayout = () => {
   const navigate = useNavigate();
-  const [tbn, setTbn] = useState(false);
+  const isLoginPage = window.location.pathname.includes("/auth/login");
 
   return (
     <div className="min-h-screen flex flex-col ">
@@ -29,23 +29,15 @@ const AuthLayout = () => {
             variant="custom"
             className="md:w-[120px] text-lg py-6 max-md:py-3"
             onClick={() => {
-              setTbn((prev) => {
-                const newState = !prev;
-                if (newState) {
-                  navigate("/auth/login");
-                } else {
-                  navigate("/auth/register");
-                }
-                return newState;
-              });
+              navigate(isLoginPage ? "/auth/register" : "/auth/login");
             }}
           >
-            {tbn ? "Sign Up" : "Log In"}
+            {isLoginPage ? "Sign Up" : "Log In"}
           </Button>
         </div>
       </header>
       <main className="flex md:flex-1 items-center justify-center px-12 my-4 max-md:p-4 ">
-        <div className="flex flex-col md:flex-row bg-white rounded-xl md:shadow-lg overflow-hidden w-full max-md:shadow-2xl">
+        <div className="flex flex-col md:flex-row bg-white rounded-xl md:shadow-lg overflow-hidden w-full">
           <div className="hidden lg:flex flex-col justify-center items-center bg-blue-100 px-10 py-12 w-1/2">
             <img src={girlImg} alt="default-girl" />
           </div>
