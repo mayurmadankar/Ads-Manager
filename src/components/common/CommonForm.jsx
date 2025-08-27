@@ -69,7 +69,8 @@ const CommonForm = (props) => {
 
   const renderInputsByComponentType = (getControlItem) => {
     const value = formData[getControlItem.name] || "";
-    const error = errors[getControlItem.name];
+    const error =
+      errors[getControlItem.name] || submitFieldErrors[getControlItem.name];
 
     if (
       getControlItem.componentType === "input" &&

@@ -19,6 +19,21 @@ export const registerUser = createAsyncThunk(
     return response.data;
   }
 );
+export const loginUser = createAsyncThunk(
+  "/auth/login",
+
+  async (formData) => {
+    const response = await axios.post(
+      "https://jsonplaceholder.typicode.com/posts",
+      formData,
+      {
+        withCredentials: true
+      }
+    );
+
+    return response.data;
+  }
+);
 const authSlice = createSlice({
   name: "auth",
   initialState,
@@ -33,6 +48,17 @@ const authSlice = createSlice({
         state.isAuthenticated = true;
       })
       .addCase(registerUser.rejected, (state) => {
+        state.isLoading = false;
+        state.isAuthenticated = false;
+      })
+      .addCase(loginUser.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(loginUser.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.isAuthenticated = true;
+      })
+      .addCase(loginUser.rejected, (state, action) => {
         state.isLoading = false;
         state.isAuthenticated = false;
       });

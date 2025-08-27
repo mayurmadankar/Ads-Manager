@@ -1,27 +1,23 @@
+import React, { useState } from "react";
 import CommonForm from "@/components/common/CommonForm";
-import { registerFormControls } from "@/components/config";
-import { registerUser } from "@/redux/AuthSlice";
-import { useState } from "react";
+import { loginFormControls } from "@/components/config";
 import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import validator from "validator";
+import { loginUser } from "@/redux/AuthSlice";
 import { toast } from "react-toastify";
 
 const initialState = {
-  firstName: "",
-  lastName: "",
-  email: "",
-  phone: "",
+  identifier: "",
   password: ""
 };
 
-const AuthRegister = () => {
+const AuthLogin = () => {
   const [formData, setFormData] = useState(initialState);
-  const [checkboxError, setCheckboxError] = useState(false);
-  const [submitFieldErrors, setSubmitFieldErrors] = useState({});
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
-
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [checkboxChecked, setCheckboxChecked] = useState(false);
+  const [submitFieldErrors, setSubmitFieldErrors] = useState({});
+
+  const dispatch = useDispatch();
 
   const validateForm = () => {
     let newErrors = {};
@@ -66,6 +62,9 @@ const AuthRegister = () => {
           }
         }
       }
+      if (!checkboxChecked) {
+        newErrors.checkbox = "You must agree to the terms and conditions";
+      }
 
       if (errorMsg) {
         newErrors[name] = errorMsg;
@@ -76,43 +75,44 @@ const AuthRegister = () => {
     return Object.keys(newErrors).length === 0;
   };
 
-  function onSubmit(event) {
+  const onSubmit = (event) => {
     event.preventDefault();
     setIsSubmitting(true);
 
     const isValid = validateForm();
     if (isValid) {
-      dispatch(registerUser(formData)).then((res) => {
+      dispatch(loginUser(formData)).then((res) => {
         if (res?.payload?.id) {
-          toast.success("Registration successful");
-          navigate("/auth/login");
+          toast.success("Login successful");
         } else {
-          toast.error("Registration failed");
+          toast.error("Login failed");
         }
         setIsSubmitting(false);
       });
+    } else {
+      setIsSubmitting(false);
     }
-  }
+  };
 
   return (
-    <div className="flex items-center justify-center w-[500px] p-6 bg-white md:border rounded-lg ">
+    <div className="flex items-center justify-center  w-[500px] p-6 bg-white md:border rounded-lg ">
       <div className="flex flex-col items-center justify-center w-full gap-4">
-        <h1 className="text-[30px] font-bold mb-4">Sign Up</h1>
+        <h1 className="text-[30px] font-bold mb-4">Log In</h1>
         <CommonForm
-          formControls={registerFormControls}
-          buttonText="Sign Up"
-          isSubmitting={isSubmitting}
+          formControls={loginFormControls}
           formData={formData}
           setFormData={setFormData}
           onSubmit={onSubmit}
+          buttonText="Log In"
+          isSubmitting={isSubmitting}
           submitFieldErrors={submitFieldErrors}
         />
-        <div className="flex items-center justify-center pt-2 gap-2 max-sm:w-[300px]">
+        <div className="flex items-center justify-center py-2 gap-2 max-sm:w-[300px]">
           <input
             type="checkbox"
             id="terms"
             className="accent-blue-600"
-            onChange={(e) => setCheckboxError(!e.target.checked)}
+            onChange={(e) => setCheckboxChecked(e.target.checked)}
           />
           <label htmlFor="terms" className="text-sm">
             I agree to&nbsp;
@@ -126,14 +126,12 @@ const AuthRegister = () => {
             &nbsp;of Bharat TeleClinic
           </label>
         </div>
-        {checkboxError && (
-          <p className="text-red-500 text-sm">
-            You must agree to the terms and conditions
-          </p>
-        )}
+        {submitFieldErrors.checkbox ? (
+          <p className="text-red-500 text-sm">{submitFieldErrors.checkbox}</p>
+        ) : null}
       </div>
     </div>
   );
 };
 
-export default AuthRegister;
+export default AuthLogin;

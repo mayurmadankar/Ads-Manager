@@ -6,9 +6,9 @@ const CheckAuth = ({ isAuthenticated, children }) => {
 
   if (location.pathname === "/") {
     if (!isAuthenticated) {
-      return <Navigate to="/auth/register" />;
+      return <Navigate to="/auth/login" />;
     } else {
-      return <Navigate to="/dashboard" />;
+      return <Navigate to="/ads/dashboard" />;
     }
   }
   if (
@@ -18,7 +18,7 @@ const CheckAuth = ({ isAuthenticated, children }) => {
       location.pathname.includes("/register")
     )
   ) {
-    return <Navigate to="/auth/register" />;
+    return <Navigate to="/auth/login" />;
   }
 
   if (
@@ -26,7 +26,7 @@ const CheckAuth = ({ isAuthenticated, children }) => {
     (location.pathname.includes("/login") ||
       location.pathname.includes("/register"))
   ) {
-    return <Navigate to="/dashboard" />;
+    return <Navigate to="/ads/dashboard" />;
   }
   return <>{children}</>;
 };

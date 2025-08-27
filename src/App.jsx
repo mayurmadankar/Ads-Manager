@@ -1,8 +1,10 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import AuthRegister from "./pages/AuthRegister";
-import AuthLogin from "./pages/AuthLogin";
+import AuthRegister from "./pages/auth/AuthRegister";
+import AuthLogin from "./pages/auth/AuthLogin";
 import CheckAuth from "./components/common/CheckAuth";
 import AuthLayout from "./components/auth/AuthLayout";
+import Dashboard from "./pages/user-view/Dashboard";
+import AdsLayout from "./components/ads-view/AdsLayout";
 
 function App() {
   const isAuthenticated = false;
@@ -24,6 +26,20 @@ function App() {
           element: <AuthRegister />
         },
         { path: "login", element: <AuthLogin /> }
+      ]
+    },
+    {
+      path: "/ads",
+      element: (
+        <CheckAuth isAuthenticated={isAuthenticated}>
+          <AdsLayout />
+        </CheckAuth>
+      ),
+      children: [
+        {
+          path: "dashboard",
+          element: <Dashboard />
+        }
       ]
     }
   ]);
