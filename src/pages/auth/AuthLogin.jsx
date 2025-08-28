@@ -5,6 +5,7 @@ import { useDispatch } from "react-redux";
 import validator from "validator";
 import { loginUser } from "@/redux/AuthSlice";
 import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
 const initialState = {
   identifier: "",
@@ -16,6 +17,8 @@ const AuthLogin = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [checkboxChecked, setCheckboxChecked] = useState(false);
   const [submitFieldErrors, setSubmitFieldErrors] = useState({});
+
+  const navigate = useNavigate();
 
   const dispatch = useDispatch();
 
@@ -84,6 +87,7 @@ const AuthLogin = () => {
       dispatch(loginUser(formData)).then((res) => {
         if (res?.payload?.id) {
           toast.success("Login successful");
+          navigate("/ads/dashboard");
         } else {
           toast.error("Login failed");
         }

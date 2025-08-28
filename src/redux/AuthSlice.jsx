@@ -30,7 +30,7 @@ export const loginUser = createAsyncThunk(
         withCredentials: true
       }
     );
-
+    console.log("Login response:", response.data);
     return response.data;
   }
 );
@@ -45,7 +45,7 @@ const authSlice = createSlice({
       })
       .addCase(registerUser.fulfilled, (state, action) => {
         state.isLoading = false;
-        state.isAuthenticated = true;
+        state.isAuthenticated = false;
       })
       .addCase(registerUser.rejected, (state) => {
         state.isLoading = false;
@@ -57,6 +57,10 @@ const authSlice = createSlice({
       .addCase(loginUser.fulfilled, (state, action) => {
         state.isLoading = false;
         state.isAuthenticated = true;
+        console.log(
+          "isAuthenticated in loginUser.fulfilled:",
+          state.isAuthenticated
+        );
       })
       .addCase(loginUser.rejected, (state, action) => {
         state.isLoading = false;

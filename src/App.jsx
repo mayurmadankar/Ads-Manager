@@ -5,9 +5,12 @@ import CheckAuth from "./components/common/CheckAuth";
 import AuthLayout from "./components/auth/AuthLayout";
 import Dashboard from "./pages/user-view/Dashboard";
 import AdsLayout from "./components/ads-view/AdsLayout";
+import { useSelector } from "react-redux";
+import { authSelector } from "./redux/AuthSlice";
 
 function App() {
-  const isAuthenticated = false;
+  const { isAuthenticated } = useSelector(authSelector);
+
   const router = createBrowserRouter([
     {
       path: "/",
