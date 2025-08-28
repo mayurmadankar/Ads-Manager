@@ -14,6 +14,15 @@ const CheckAuth = ({ isAuthenticated, children }) => {
       return <Navigate to="/ads/dashboard" />;
     }
   }
+
+  if (
+    !isAuthenticated &&
+    location.pathname.includes("/register") &&
+    location.state?.fromRegisterSuccess
+  ) {
+    return <Navigate to="/auth/login" />;
+  }
+
   if (
     !isAuthenticated &&
     !(
@@ -23,6 +32,7 @@ const CheckAuth = ({ isAuthenticated, children }) => {
   ) {
     return <Navigate to="/auth/login" />;
   }
+
   if (location.pathname.includes("/ads") && !isAuthenticated) {
     return <Navigate to="/auth/login" />;
   }

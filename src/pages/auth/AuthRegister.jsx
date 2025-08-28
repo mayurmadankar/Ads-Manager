@@ -86,10 +86,10 @@ const AuthRegister = () => {
 
     const isValid = validateForm();
     if (isValid) {
+      navigate("/auth/login", { state: { fromRegisterSuccess: true } });
       dispatch(registerUser(formData)).then((res) => {
         if (res?.payload?.id) {
           toast.success("Registration successful");
-          navigate("/auth/login");
         } else {
           toast.error("Registration failed");
         }
