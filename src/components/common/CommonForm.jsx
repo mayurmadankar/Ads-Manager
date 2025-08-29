@@ -114,6 +114,79 @@ const CommonForm = (props) => {
         </div>
       );
     }
+    if (getControlItem.name === "identifier") {
+      return (
+        <div className="mb-4 flex items-center gap-2">
+          <Input
+            type={getControlItem.type}
+            name={getControlItem.name}
+            placeholder={getControlItem.placeholder}
+            value={value}
+            onChange={(event) =>
+              handleInputChange(event, getControlItem.name, getControlItem.type)
+            }
+            className={`max-sm:w-[190px] w-full ${
+              error || submitFieldErrors[getControlItem.name]
+                ? "border-red-500"
+                : ""
+            }`}
+          />
+          <Button
+            variant="custom"
+            className="
+    w-[100px] text-sm py-2
+    sm:w-[120px] sm:text-base sm:py-3
+    md:w-[140px] md:text-lg md:py-4
+  "
+          >
+            Get OTP
+          </Button>
+          {(error || submitFieldErrors[getControlItem.name]) && (
+            <p className="text-red-500 text-sm mt-1">
+              {error || submitFieldErrors[getControlItem.name]}
+            </p>
+          )}
+        </div>
+      );
+    }
+
+    if (getControlItem.name === "otp") {
+      return (
+        <div className="mb-4 flex items-center gap-2">
+          <Input
+            type={getControlItem.type}
+            name={getControlItem.name}
+            placeholder={getControlItem.placeholder}
+            value={value}
+            maxLength={4}
+            onChange={(event) =>
+              handleInputChange(event, getControlItem.name, getControlItem.type)
+            }
+            className={`max-sm:w-[190px] w-full ${
+              error || submitFieldErrors[getControlItem.name]
+                ? "border-red-500"
+                : ""
+            }`}
+          />
+          <Button
+            variant="custom"
+            className="
+    w-[100px] text-sm py-2
+    sm:w-[120px] sm:text-base sm:py-3
+    md:w-[140px] md:text-lg md:py-4
+  "
+          >
+            Verify OTP
+          </Button>
+
+          {(error || submitFieldErrors[getControlItem.name]) && (
+            <p className="text-red-500 text-sm mt-1 w-full">
+              {error || submitFieldErrors[getControlItem.name]}
+            </p>
+          )}
+        </div>
+      );
+    }
 
     return (
       <>
